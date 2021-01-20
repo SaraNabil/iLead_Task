@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -31,22 +30,58 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Stack(
+            alignment: Alignment.bottomRight,
             children: [
-              ToolBarWidget(),
-              SearchWidget(),
-              SizedBox(
-                height: height * 0.01,
+              Column(
+                children: [
+                  ToolBarWidget(),
+                  SearchWidget(),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
+                  SliderWidget(),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
+                  Expanded(child: PropertyWidget()),
+                ],
               ),
-              SliderWidget(),
-              SizedBox(
-                height: height * 0.01,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: width * 0.19,
+                  height: height * 0.07,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).accentColor,
+                    border: Border.all(
+                        color: Theme.of(context).accentColor),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.place,
+                            size: 16, color: Theme.of(context).primaryColor),
+                        SizedBox(
+                          width: width * 0.01,
+                        ),
+                        Text(
+                          'Map',
+                          style: TextStyle(color: Theme.of(context).primaryColor),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              Expanded(child: PropertyWidget()),
             ],
           ),
         ),

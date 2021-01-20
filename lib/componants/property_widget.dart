@@ -12,7 +12,6 @@ class _PropertyWidgetState extends State<PropertyWidget> {
   var response;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     response = Api.getPropertyData();
   }
